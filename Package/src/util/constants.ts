@@ -110,3 +110,41 @@ export const CDN: {
     return `${CDN.root}/emojis/${emojiId}.${format}${size ? `?size=${size}` : ""}${quality ? `&quality=${quality}` : ""}`;
   },
 };
+
+export const Opcodes = {
+  Dispatch: 0,
+  Heartbeat: 1,
+  Identify: 2,
+  Presence_Update: 3,
+  Voice_State_Update: 4,
+  Resume: 6,
+  Reconnect: 7,
+  Request_Guild_Members: 8,
+  Invalid_Session: 9,
+  Hello: 10,
+  Heartbeat_Ack: 11,
+};
+
+export const WebsocketReadyState = {
+  Connecting: 0,
+  Open: 1,
+  Closing: 2,
+  Closed: 3,
+};
+
+export const Activity = {
+  Playing: 0,
+  Streaming: 1,
+  Listening: 2,
+  Watching: 3,
+  Custom: 4,
+  Competing: 5,
+};
+
+export const Status = {
+  Online: "online",
+  Dnd: "dnd",
+  Idle: "idle",
+  Invisible: "invisible",
+  Offline: "offline",
+};

@@ -1,4 +1,10 @@
 import Client from "../..";
+import Heartbeat from "../../../handlers/Heartbeat";
+import HeartbeatAck from "../../../handlers/HeartbeatAck";
+import Hello from "../../../handlers/Hello";
+import InvalidSession from "../../../handlers/InvalidSession";
+import Resume from "../../../handlers/Resume";
+import {Opcodes} from "../../../util/constants";
 import APPLICATION_COMMAND_PERMISSIONS_UPDATE from "./events/APPLICATION_COMMAND_PERMISSIONS_UPDATE";
 import AUTO_MODERATION_ACTION_EXECUTION from "./events/AUTO_MODERATION_ACTION_EXECUTION";
 import AUTO_MODERATION_RULE_CREATE from "./events/AUTO_MODERATION_RULE_CREATE";
@@ -63,13 +69,37 @@ export default class ActionsManager {
     message: {
       t: string;
       d: any;
+      s: any;
+      op: any;
     },
   ) {
     this.client = client;
     this._patch(message);
   }
 
-  _patch(message: {t: string; d: any}) {
+  _patch(message: {t: string; d: any; s: any; op: any}) {
+    if (message.s) this.client.seq = message.s;
+    switch (message.op) {
+      case Opcodes.Invalid_Session:
+        new InvalidSession(message, this.client);
+        break;
+      case Opcodes.Heartbeat:
+        new Heartbeat(this.client);
+        break;
+      case Opcodes.Heartbeat_Ack:
+        new HeartbeatAck(this.client);
+        break;
+      case Opcodes.Reconnect:
+        this.client.ws.reconnect = true;
+        this.client.ws.handleReconnect();
+        break;
+      case Opcodes.Resume:
+        new Resume(this.client);
+        break;
+      case Opcodes.Hello:
+        new Hello(message, this.client);
+        break;
+    }
     switch (message.t) {
       case "APPLICATION_COMMAND_PERMISSIONS_UPDATE":
         return APPLICATION_COMMAND_PERMISSIONS_UPDATE(this.client, message);
