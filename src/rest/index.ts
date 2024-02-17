@@ -24,7 +24,7 @@ export default class Rest {
     data: {
       reason: string | undefined;
       body: Object;
-    }
+    },
   ) {
     return new Promise((resolve, reject) => {
       fetch(this.client.root + endpoint, {
@@ -47,7 +47,7 @@ export default class Rest {
     data: {
       reason: string | undefined;
       body: Object;
-    }
+    },
   ) {
     return new Promise((resolve, reject) => {
       fetch(this.client.root + endpoint, {
@@ -70,7 +70,7 @@ export default class Rest {
     data: {
       reason: string | undefined;
       body: Object;
-    }
+    },
   ) {
     return new Promise((resolve, reject) => {
       fetch(this.client.root + endpoint, {
@@ -93,7 +93,7 @@ export default class Rest {
     data: {
       reason: string | undefined;
       body: Object;
-    }
+    },
   ) {
     return new Promise((resolve, reject) => {
       fetch(this.client.root + endpoint, {

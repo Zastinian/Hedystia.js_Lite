@@ -2,7 +2,6 @@ import EventEmitter from "node:events";
 import WebSocketManager from "./ws";
 import Options from "../types/options";
 import ClientUser from "../types/clientuser";
-import GuildManager from "../managers/guild";
 import Rest from "../rest";
 
 export default class Client extends EventEmitter {
@@ -11,7 +10,6 @@ export default class Client extends EventEmitter {
   user: ClientUser | undefined;
   version: number;
   root: string;
-  guilds: GuildManager;
   api: Rest;
   constructor(options: {intents: number[]; messagesCache: number}) {
     super();
@@ -27,7 +25,6 @@ export default class Client extends EventEmitter {
     this.ws = new WebSocketManager(this, this.options.intents);
     this.api = new Rest(this);
     this.user;
-    this.guilds = new GuildManager(this);
   }
   async login(token: string) {
     if (!token) return new Error("You forgot to specify the token");

@@ -38,7 +38,7 @@ export default class WebSocketManager {
               $device: "hedystia.js",
             },
           },
-        })
+        }),
       );
     });
     this.ws.on("error", async (err: string) => {
@@ -73,7 +73,7 @@ export default class WebSocketManager {
         JSON.stringify({
           op: 1,
           d: this.seq,
-        })
+        }),
       );
     }, ms);
   }
