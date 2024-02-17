@@ -1,15 +1,25 @@
 {
   "name": "hedystia.js_lite",
   "version": "0.0.0-dev.0.0.1",
-  "description": "",
+  "description": "JavaScript library for interacting with the Discord API",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node index.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "client",
+    "discord",
+    "discord-client",
+    "discord-api",
+    "hedystia",
+    "nodejs",
+    "hedystia.js",
+    "lite"
+  ],
+  "author": "contact@hedystia.com",
   "license": "ISC",
+  "repository": "https://github.com/Zastinian/Hedystia.js_Lite",
   "devDependencies": {
     "@types/node": "^20.11.19",
     "@types/ws": "^8.5.10",
